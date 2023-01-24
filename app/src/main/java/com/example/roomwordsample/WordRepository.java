@@ -2,6 +2,7 @@ package com.example.roomwordsample;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.provider.ContactsContract;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -24,9 +25,12 @@ public class WordRepository {
     private class InsertRunnable implements Runnable {
         Word word;
 
+        public InsertRunnable(Word w) {
+            word = w;
+        }
         @Override
         public void run() {
-            
+            mWordDao.insert(word);
         }
     }
 }
